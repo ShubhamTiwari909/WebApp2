@@ -7,7 +7,7 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
 
 
   const mapData = () => {
-    let showActivity =  data.map(item => {
+    let showActivity = data.map(item => {
       return (
         `
     <div class="flex justify-between items-center bg-white p-6">
@@ -20,7 +20,7 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
     ${item.text}</p>
     <p class="px-4 py-2 rounded-md ${displayNoteLabelColor(item.texttype)}">${item.texttype}</p>
     </div>
-    <button id="${item.id}" class="ml-5">
+    <button id="btn-${item.id}" class="ml-5">
      <svg class="icon" width="18" height="18">
       <use xlink:href="#3682063881582863582"></use>
      </svg>
@@ -52,17 +52,23 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
     }).join("")
 
     wrapperContainer.innerHTML = wrapperContainer.id === "activities" ? showActivity : showNotes;
-    for (let i = 0; i < wrapperContainer.children.length; i++) {
-      wrapperContainer.children[i].children[1].addEventListener("click", () => {
-        deleteItem(i)
-      })
+    for (let i = 0; i <= dataId; i++) {
+      let btn = document.getElementById(`btn-${i}`);
+      if (btn !== null) {
+        btn.addEventListener("click", () => {
+          deleteItem(i)
+        })
+      }
     }
   }
 
   let deleteItem = (id) => {
-    let deleteData = data.findIndex(item => item.id === id)
-    data.splice(deleteData, 1);
+    console.log(id)
+    let removeIndex = data.findIndex(item => item.id === id);
+
+    data.splice(removeIndex, 1);
     mapData()
+
   }
 
   let displayNoteColor = (value) => {
