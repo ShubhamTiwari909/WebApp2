@@ -1,0 +1,11 @@
+require('../sass/index.scss')
+require("./tailwind.config")
+require("./image-bundler.js");
+require("./side-navbar.js");
+require("./message-box.js");
+require("./activity.js");
+require("./notes.js");
+require("./activity-notes-toggler.js");
+require("./activity-notes.js");
+require("./curver-chart.js")
+require("./users-responds.js")
