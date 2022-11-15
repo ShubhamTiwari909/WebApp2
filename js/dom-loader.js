@@ -9,6 +9,7 @@ export const messageInput = document.getElementById('message-input');
 export const messageBoxContainer = document.getElementById('message-box-content')
 export const settingsButton = document.getElementById('settings-button');
 export const settingsBox = document.getElementById('setting-box');
+export const chatFileInput = document.getElementById('chat-file-input');
 export const typing = document.querySelectorAll(".bounce")
 
 export const container = document.getElementById("activities");

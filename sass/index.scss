@@ -1,67 +1,95 @@
-.gradient-blue{
-    background-image:linear-gradient(to right, #60d9f7, #58baf6, #52a0f5, #4d8cf4)
+.gradient-blue {
+  background-image: linear-gradient(
+    to right,
+    #60d9f7,
+    #58baf6,
+    #52a0f5,
+    #4d8cf4
+  );
 }
 
-.user-respond-stats{
-    box-shadow: 0 5px 45px 0 rgba(46, 104, 208, 0.1);
+.user-respond-stats {
+  box-shadow: 0 5px 45px 0 rgba(46, 104, 208, 0.1);
+}
+
+// custom file input
+.custom-file-input{
+    width:40px
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: "some";
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  width: 40px;
+  background-color: transparent;
+  color: transparent;
+  z-index: 1;
+}
+
+.custom-file-icon {
+  position: absolute;
+  left: 60px;
+  display: inline-block;
+  cursor: pointer;
 }
 
 
+// SCROLLBAR
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 /* width */
 body::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(236, 236, 236);
-    border-radius: 5px;
+  box-shadow: inset 0 0 5px rgb(236, 236, 236);
+  border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(138, 159, 255);
-    border-radius: 10px;
+  background: rgb(138, 159, 255);
+  border-radius: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
-    background: rgb(83, 80, 80);
+  background: rgb(83, 80, 80);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(189, 189, 189);
+  background: rgb(189, 189, 189);
 }
 
-
-
-.bounce{
-    animation: bounce 1s linear infinite forwards;
-    transition:all 0.3s ease-in-out;
+.bounce {
+  animation: bounce 1s linear infinite forwards;
+  transition: all 0.3s ease-in-out;
 }
 
-.bounce:nth-child(1){
-    animation-delay: 0.2s;
+.bounce:nth-child(1) {
+  animation-delay: 0.2s;
 }
-.bounce:nth-child(2){
-    animation-delay:0.4s;
+.bounce:nth-child(2) {
+  animation-delay: 0.4s;
 }
-.bounce:nth-child(3){
-    animation-delay: 0.6s;
+.bounce:nth-child(3) {
+  animation-delay: 0.6s;
 }
 
 @keyframes bounce {
-    0%{
-        transform:translateY(-5px);
-    }
-    100%{
-        transform:translateY(0);
-    }
+  0% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
-
-
-
