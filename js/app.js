@@ -10,7 +10,7 @@ require("./activity-notes.js");
 require("./curver-chart.js")
 require("./users-responds.js")
 
-import { settingsButton, settingsBox, activityForm, activityFormToggler, notesForm, notesFormToggler } from './dom-loader'
+import { settingsButton, settingsBox } from './dom-loader'
 
 document.addEventListener('click', function (event) {
 
@@ -27,16 +27,6 @@ document.addEventListener('click', function (event) {
             usersSettings[i].classList.remove("block")
         }
     }
-    if (!activityFormToggler.contains(event.target)) {
-        activityForm.classList.add("hidden")
-        activityForm.classList.remove("block")
-
-    }
-    if (!notesFormToggler.contains(event.target)) {
-        notesForm.classList.add("hidden")
-        notesForm.classList.remove("block")
-    }
-
 });
 
 
