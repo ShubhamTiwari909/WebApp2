@@ -62,7 +62,7 @@ let wrapperStats1 = (data, userReponseType) => {
             </p>
           </div>
           <a href="javascript:void(0)" class="users-stats-settings-toggler">
-            <svg class="icon w-10 h-10">
+            <svg class="icon w-5 h-5">
               <use xlink:href="#options"></use>
             </svg>
           </a>
