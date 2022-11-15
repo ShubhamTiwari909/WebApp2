@@ -17,7 +17,7 @@ notesToggler.addEventListener("click",function(e) {
     e.preventDefault();
     if(notesBox.classList.contains("hidden")){
         activityBox.classList.add("hidden")
-        activityBox.classList.remove("remove")
+        activityBox.classList.remove("block")
         notesBox.classList.add("block")
         notesBox.classList.remove("hidden")
         activityToggler.classList.add("text-gray-400")

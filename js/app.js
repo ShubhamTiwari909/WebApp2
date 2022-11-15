@@ -9,3 +9,34 @@ require("./activity-notes-toggler.js");
 require("./activity-notes.js");
 require("./curver-chart.js")
 require("./users-responds.js")
+
+import { settingsButton, settingsBox, activityForm, activityFormToggler, notesForm, notesFormToggler } from './dom-loader'
+
+document.addEventListener('click', function (event) {
+
+    let usersSettingsToggler = document.getElementsByClassName("users-stats-settings-toggler");
+    let usersSettings = document.getElementsByClassName("users-stats-settings")
+
+    if (!settingsButton.contains(event.target)) {
+        settingsBox.classList.add("hidden")
+        settingsBox.classList.remove("block")
+    }
+    for (let i = 0; i < usersSettingsToggler.length; i++) {
+        if (!usersSettingsToggler[i].contains(event.target)) {
+            usersSettings[i].classList.add("hidden")
+            usersSettings[i].classList.remove("block")
+        }
+    }
+    if (!activityFormToggler.contains(event.target)) {
+        activityForm.classList.add("hidden")
+        activityForm.classList.remove("block")
+
+    }
+    if (!notesFormToggler.contains(event.target)) {
+        notesForm.classList.add("hidden")
+        notesForm.classList.remove("block")
+    }
+
+});
+
+

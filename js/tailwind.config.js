@@ -8,6 +8,7 @@ tailwind.config = {
       height: {
         'mid-screen-1': '68vh',
         'mid-screen-2': '100vh',
+        'full-screen': '100%',
         '120': '30rem',
         '144': '36rem',
       },

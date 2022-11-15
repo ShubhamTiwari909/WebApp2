@@ -1,10 +1,4 @@
-const messageBox = document.getElementById('self-messages');
-const sendBtn = document.getElementById('send-button');
-const messageInput = document.getElementById('message-input');
-const messageBoxContainer = document.getElementById('message-box-content')
-const settingsButton = document.getElementById('settings-button');
-const settingsBox = document.getElementById('setting-box');
-const typing = document.querySelectorAll(".bounce")
+import { messageBox, sendBtnMessage, messageInput, messageBoxContainer, settingsButton, settingsBox, typing } from './dom-loader'
 import userImage from '../Images/mask.png'
 
 
@@ -22,18 +16,35 @@ let selfMessages = [
 
 
 const typingAnimation = () => {
+    messageInput.addEventListener("mouseout", function () {
+        if (messageInput.value !== "") {
+            sendBtnMessage.disabled = false;
+            sendBtnMessage.classList.add("bg-blue-400")
+            sendBtnMessage.classList.remove("bg-gray-400")
+        }
+        else {
+            sendBtnMessage.disabled = true;
+            sendBtnMessage.classList.add("bg-gray-400")
+            sendBtnMessage.classList.remove("bg-blue-400")
+        }
+    })
 
     messageInput.addEventListener("focus", function () {
         typing.forEach(element => {
             element.classList.add("inline-block")
             element.classList.remove("hidden")
         });
+        sendBtnMessage.classList.add("bg-blue-400")
+        sendBtnMessage.classList.remove("bg-gray-400")
     })
-    messageInput.addEventListener("mouseout", function () {
+
+    messageInput.addEventListener("focusout", function () {
         typing.forEach(element => {
             element.classList.remove("inline-block")
             element.classList.add("hidden")
         });
+        sendBtnMessage.classList.add("bg-gray-400")
+        sendBtnMessage.classList.remove("bg-blue-400")
     })
 }
 
@@ -41,7 +52,7 @@ const displaySelfMessages = () => {
     const d = new Date();
     let h = d.getHours();
     let m = d.getMinutes();
-    let time = `${h}:${m < 10 ? "0"+m : m} ${h < 12 ? " AM" : " PM"}`;
+    let time = `${h}:${m < 10 ? "0" + m : m} ${h < 12 ? " AM" : " PM"}`;
 
     const messages = selfMessages.map(message => {
         return (
@@ -60,7 +71,7 @@ const displaySelfMessages = () => {
         <img src=${userImage} class="img-fluid mt-1 self-start" />
       </div>`
         )
-    })
+    }).join("")
 
     messageBox.innerHTML = messages;
 }
@@ -68,14 +79,19 @@ const displaySelfMessages = () => {
 
 displaySelfMessages()
 
-sendBtn.addEventListener("click", function (e) {
+sendBtnMessage.addEventListener("click", function (e) {
     e.preventDefault();
     selfMessages.push({ id: messageId, text: messageInput.value });
     displaySelfMessages()
     messageBoxContainer.scrollTo(0, messageBoxContainer.scrollHeight)
     messageId++;
     messageInput.value = ""
+    sendBtnMessage.classList.add("bg-gray-400")
+    sendBtnMessage.classList.remove("bg-blue-400")
 })
+
+
+// toggling chat settings
 
 settingsButton.addEventListener("click", function (e) {
     e.preventDefault();
@@ -85,7 +101,7 @@ settingsButton.addEventListener("click", function (e) {
     }
     else {
         settingsBox.classList.add("hidden")
-        settingsBox.classList.remo("block")
+        settingsBox.classList.remove("block")
     }
 })
 

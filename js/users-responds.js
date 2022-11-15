@@ -61,13 +61,13 @@ let wrapperStats1 = (data, userReponseType) => {
               ${item.users} <span class="text-sm text-gray-400">This ${item.timestamp}</span>
             </p>
           </div>
-          <a href="javascript:void(0)">
+          <a href="javascript:void(0)" class="users-stats-settings-toggler">
             <svg class="icon w-10 h-10">
               <use xlink:href="#options"></use>
             </svg>
           </a>
 
-           <ul class="bg-white p-3 absolute top-8 right-2 hidden flex-col gap-3" id="users-stats-settings">
+           <ul class="bg-white p-3 absolute top-8 right-2 hidden flex-col gap-3 users-stats-settings" id="users-stats-settings">
             <li><a href="javascript:void(0)" id="${userReponseType.id === "answered-users" ? "ans-week" : "unans-week"}">week</a></li>
             <li><a href="javascript:void(0)" id="${userReponseType.id === "answered-users" ? "ans-month" : "unans-month"}">month</a></li>
             <li><a href="javascript:void(0)" id="${userReponseType.id === "answered-users" ? "ans-year" : "unans-year"}">year</a></li>

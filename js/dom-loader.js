@@ -2,6 +2,15 @@ export const userProfileImage = document.getElementById("user-profile-image");
 export const messageSenderImage1 = document.getElementById("message-sender-image");
 export const mainContentBox = document.getElementById("main-content")
 
+
+export const messageBox = document.getElementById('self-messages');
+export const sendBtnMessage = document.getElementById('send-button');
+export const messageInput = document.getElementById('message-input');
+export const messageBoxContainer = document.getElementById('message-box-content')
+export const settingsButton = document.getElementById('settings-button');
+export const settingsBox = document.getElementById('setting-box');
+export const typing = document.querySelectorAll(".bounce")
+
 export const container = document.getElementById("activities");
 export const inputMessage = document.getElementById("msg-input");
 export const sendBtn = document.getElementById("send");
@@ -28,3 +37,4 @@ export const answeredUsers = document.getElementById("answered-users")
 export const unansweredUsers = document.getElementById("unanswered-users")
 
 export const requestViewTimestamp = document.getElementById("request-view-timestamp")
+

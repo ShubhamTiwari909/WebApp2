@@ -19,7 +19,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body class="font-dm-sans overflow-hidden">
+  <body class="font-dm-sans overflow-auto">
     <!-- SVG Sprite -->
     <svg width="0" height="0" class="hidden">
       <symbol
@@ -575,7 +575,7 @@
       <!-- Message box and activity section -->
       <section
         id="main-content"
-        class="flex w-full bg-violet-100/30 h-120 overflow-auto"
+        class="flex w-full bg-violet-100/30 h-full-screen overflow-auto"
       >
         <!-- chats and notes section -->
         <div class="flex-2 p-10">
@@ -598,15 +598,9 @@
               </p>
               <div class="relative">
                 <a href="javascript:void(0)" id="settings-button">
-                  <span
-                    class="w-2 h-2 rounded-full bg-gray-200 absolute inset-y-1.5 right-0 inline-block"
-                  ></span>
-                  <span
-                    class="w-2 h-2 rounded-full bg-gray-200 absolute inset-y-1.5 right-3 inline-block"
-                  ></span>
-                  <span
-                    class="w-2 h-2 rounded-full bg-gray-200 absolute inset-y-1.5 right-6 inline-block"
-                  ></span>
+                  <svg class="icon w-12 h-14 text-gray-300">
+                    <use xlink:href="#options"></use>
+                  </svg>
                 </a>
                 <div
                   class="absolute inset-y-6 -left-10 hidden z-10"
@@ -663,7 +657,7 @@
                 </div>
               </label>
               <button
-                class="flex justify-center items-center rounded-full bg-blue-400"
+                class="flex justify-center items-center rounded-full bg-gray-400"
                 id="send-button"
               >
                 <svg class="icon w-10 h-10">
@@ -790,17 +784,28 @@
               Requests views
             </p>
             <div class="flex gap-2 items-center relative">
-              <select class="bg-transparent text-xs text-gray-400 outline-none" id="request-view-timestamp">
-                <option><a href="javascript:void(0)" id="week">This week</a></option>
-                <option><a href="javascript:void(0)" id="month">This month</a></option>
-                <option><a href="javascript:void(0)" id="year">This year</a></option>
+              <select
+                class="bg-transparent text-xs text-gray-400 outline-none"
+                id="request-view-timestamp"
+              >
+                <option>
+                  <a href="javascript:void(0)" id="week">This week</a>
+                </option>
+                <option>
+                  <a href="javascript:void(0)" id="month">This month</a>
+                </option>
+                <option>
+                  <a href="javascript:void(0)" id="year">This year</a>
+                </option>
               </select>
             </div>
           </div>
-          <canvas
-            id="myChart"
-            class="rounded-md bg-white p-2 user-respond-stats mt-3"
-          ></canvas>
+          <div class="w-80 h-40">
+            <canvas
+              id="myChart"
+              class="rounded-md bg-white p-2 user-respond-stats mt-3"
+            ></canvas>
+          </div>
           <div
             class="px-4 py-3 rounded-md gradient-blue mt-8 user-respond-stats"
           >
