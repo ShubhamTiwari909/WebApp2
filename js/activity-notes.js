@@ -10,7 +10,7 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
     let showActivity = data.map(item => {
       return (
         `
-    <div class="flex justify-between items-center bg-white p-6">
+    <div class="flex justify-between items-center bg-white p-6 mt-4">
     <div class="flex gap-8 items-center flex-1 text-sm">
      <svg class="icon w-10 h-10">
       <use xlink:href="#move"></use>
@@ -34,8 +34,8 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
     let showNotes = data.map(item => {
       return (
         `
-    <div class="flex flex-col justify-between items-center bg-white p-4 relative">
-    <p class="ml-3 h-32 overflow-auto px-2">
+    <div class="flex flex-col justify-between items-center bg-white p-4 relative mt-4">
+    <p class="ml-3 h-28 overflow-auto px-2 break-all">
     <span class="inline-block w-2 h-2 rounded-full border-1 border-white absolute inset-y-6 left-4 ${displayNoteColor(item.texttype)}"></span>
     ${item.text}</p>
     <div class="flex gap-5 items-center text-sm">
@@ -63,12 +63,13 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
   }
 
   let deleteItem = (id) => {
-    console.log(id)
     let removeIndex = data.findIndex(item => item.id === id);
-
     data.splice(removeIndex, 1);
     mapData()
-
+    if(wrapperContainer.children.length === 0) {
+      wrapperContainer.classList.add("hidden");
+      wrapperContainer.classList.remove("block");
+    }
   }
 
   let displayNoteColor = (value) => {
@@ -110,6 +111,8 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
       data.push({ id: dataId, text: inputMessage.value, texttype: selectedNote });
       mapData()
       dataId++;
+      wrapperContainer.classList.add("block");
+      wrapperContainer.classList.remove("hidden");
     }
 
   })

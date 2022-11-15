@@ -15,55 +15,45 @@ let selfMessages = [
 ];
 
 
-const typingAnimation = () => {
 
-    chatFileInput.addEventListener("change", () => {
-        let showFileName = document.getElementById("show-file-name")
-        if (chatFileInput.files[0].name !== "" || chatFileInput.files[0].name !== undefined) {
-            sendBtnMessage.disabled = false;
-            sendBtnMessage.classList.add("bg-blue-400")
-            sendBtnMessage.classList.remove("bg-gray-400")
-            messageInput.value = chatFileInput.files[0].name;
-        }
-        else {
-            sendBtnMessage.disabled = true;
-            sendBtnMessage.classList.add("bg-gray-400")
-            sendBtnMessage.classList.remove("bg-blue-400")
-            messageInput.value = ""
-           
-        }
-    })
-    messageInput.addEventListener("mouseout", function () {
-        if (messageInput.value !== "") {
-            sendBtnMessage.disabled = false;
-            sendBtnMessage.classList.add("bg-blue-400")
-            sendBtnMessage.classList.remove("bg-gray-400")
-        }
-        else {
-            sendBtnMessage.disabled = true;
-            sendBtnMessage.classList.add("bg-gray-400")
-            sendBtnMessage.classList.remove("bg-blue-400")
-        }
-    })
-
-    messageInput.addEventListener("focus", function () {
-        typing.forEach(element => {
-            element.classList.add("inline-block")
-            element.classList.remove("hidden")
-        });
+chatFileInput.addEventListener("change", () => {
+    if (chatFileInput.files[0].name !== "" || chatFileInput.files[0].name !== undefined) {
+        sendBtnMessage.disabled = false;
         sendBtnMessage.classList.add("bg-blue-400")
         sendBtnMessage.classList.remove("bg-gray-400")
-    })
+        messageInput.value = chatFileInput.files[0].name;
+    }
+    else {
+        sendBtnMessage.disabled = true;
+        sendBtnMessage.classList.add("bg-gray-400")
+        sendBtnMessage.classList.remove("bg-blue-400")
+        messageInput.value = ""
 
-    messageInput.addEventListener("focusout", function () {
+    }
+})
+
+
+messageInput.addEventListener("keydown", function (e) {
+    console.log(e.target.value.length)
+    if (e.target.value.length === 1 || e.target.value.length === 0) {
         typing.forEach(element => {
             element.classList.remove("inline-block")
             element.classList.add("hidden")
         });
         sendBtnMessage.classList.add("bg-gray-400")
         sendBtnMessage.classList.remove("bg-blue-400")
-    })
-}
+    }
+    else {
+        typing.forEach(element => {
+            element.classList.add("inline-block")
+            element.classList.remove("hidden")
+        });
+        sendBtnMessage.classList.add("bg-blue-400")
+        sendBtnMessage.classList.remove("bg-gray-400")
+    }
+})
+
+
 
 const displaySelfMessages = () => {
     const d = new Date();
@@ -127,4 +117,3 @@ settingsButton.addEventListener("click", function (e) {
 messageBoxContainer.scrollTo(0, messageBoxContainer.scrollHeight)
 
 
-typingAnimation()
