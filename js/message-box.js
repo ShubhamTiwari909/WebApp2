@@ -96,7 +96,6 @@ sendBtnMessage.addEventListener("click", function (e) {
     messageInput.value = ""
     sendBtnMessage.classList.add("bg-gray-400")
     sendBtnMessage.classList.remove("bg-blue-400")
-    changeImage(2)
 })
 
 
