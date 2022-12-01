@@ -701,10 +701,9 @@
                 >
                   <input
                     type="text"
-                    id="msg-input"
+                    id="message-input-activity"
                     class="px-3 py-2 bg-white rounded-xl focus:outline-none border-2 border-blue-400/40"
                     placeholder="Type here"
-                    value=""
                   />
                   <div class="flex gap-4">
                     Call
@@ -723,11 +722,11 @@
                       checked
                     />
                   </div>
-                  <button
-                    id="send"
+                  <input
+                    type="submit"
                     class="px-3 py-1 rounded-full bg-blue-500 text-white text-lg"
+                    value="+"
                   >
-                    +
                   </button>
                 </form>
               </div>
@@ -737,7 +736,7 @@
             <div class="hidden" id="notes-box">
               <div
                 id="notes"
-                class="grid grid-cols-4 gap-4 h-52 overflow-auto my-3 hidden"
+                class="grid gap-4 h-52 overflow-auto my-3"
               ></div>
               <div
                 class="flex flex-col py-5 mt-5 justify-center items-center border-2 border-gray-400/20 border-dashed"
@@ -756,7 +755,7 @@
                 >
                   <input
                     type="text"
-                    id="msg-input-notes"
+                    id="message-input-notes"
                     class="px-3 py-2 bg-white rounded-xl focus:outline-none border-2 border-blue-400/40"
                     placeholder="Type here"
                   />

@@ -34,7 +34,6 @@ chatFileInput.addEventListener("change", () => {
 
 
 messageInput.addEventListener("keydown", function (e) {
-    console.log(e.target.value.length)
     if (e.target.value.length === 1 || e.target.value.length === 0) {
         typing.forEach(element => {
             element.classList.remove("inline-block")

@@ -4,8 +4,8 @@ export const mainContentBox = document.getElementById("main-content")
 
 
 export const messageBox = document.getElementById('self-messages');
+export const messageInput= document.getElementById('message-input');
 export const sendBtnMessage = document.getElementById('send-button');
-export const messageInput = document.getElementById('message-input');
 export const messageBoxContainer = document.getElementById('message-box-content')
 export const settingsButton = document.getElementById('settings-button');
 export const settingsBox = document.getElementById('setting-box');
@@ -13,8 +13,7 @@ export const chatFileInput = document.getElementById('chat-file-input');
 export const typing = document.querySelectorAll(".bounce")
 
 export const container = document.getElementById("activities");
-export const inputMessage = document.getElementById("msg-input");
-export const sendBtn = document.getElementById("send");
+export const messageInputActivity = document.getElementById('message-input-activity');
 export const activityType = document.getElementsByName("activity-type");
 export const activityBox = document.getElementById("activity-box")
 export const activityForm = document.getElementById("activity-form");
@@ -24,8 +23,7 @@ export const activityToggler = document.getElementById("activity-toggler")
 export const notesToggler = document.getElementById("notes-toggler")
 export const notesBox= document.getElementById("notes-box")
 export const notesContainer = document.getElementById("notes");
-export const inputMessageNotes = document.getElementById("msg-input-notes");
-export const sendBtnNotes = document.getElementById("save-notes");
+export const messageInputNotes = document.getElementById("message-input-notes");
 export const notesType = document.getElementsByName("note-type");
 export const notesForm = document.getElementById("notes-form");
 export const notesFormToggler = document.getElementById("notes-form-toggle");

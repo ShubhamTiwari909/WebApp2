@@ -1,76 +1,104 @@
 import { mainContentBox } from './dom-loader'
 
-export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, formToggler) => {
+export let wrapData = (wrapperContainer, inputMessage, textType, form, formToggler) => {
+  var selectedRow = null;
+  let idCount = 1
 
-  let data = [];
-  let dataId = 0;
+  // clear all fields
+  const clearFields = () => {
+    inputMessage.value = '';
+  }
 
+  // add data
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const msgInput = inputMessage.value;
 
-  const mapData = () => {
-    let showActivity = data.map(item => {
-      return (
-        `
-    <div class="flex justify-between items-center bg-white p-6 mt-4">
-    <div class="flex gap-8 items-center flex-1 text-sm">
-     <svg class="icon w-10 h-10">
-      <use xlink:href="#move"></use>
-     </svg>
-    <p class="relative ml-3">
-    <span class="inline-block w-2 h-2 rounded-full border-1 border-white absolute inset-y-1.5 -left-6 ${displayNoteColor(item.texttype)}"></span>
-    ${item.text}</p>
-    <p class="px-4 py-2 rounded-md ${displayNoteLabelColor(item.texttype)}">${item.texttype}</p>
-    </div>
-    <button id="btn-${item.id}" class="ml-5">
-     <svg class="icon" width="18" height="18">
-      <use xlink:href="#3682063881582863582"></use>
-     </svg>
-    </button>
-    </div>
-    `
-      )
-    }).join("")
+    if (msgInput === "") {
+      alert("Please fill all the input fields");
+    }
+    else {
+      if (selectedRow === null) {
+        const list = wrapperContainer;
+        const row = document.createElement("div");
+        let selectedNote = ""
+        for (let i = 0; i < textType.length; i++) {
+          if (textType[i].checked) {
+            selectedNote = textType[i].value
+          }
+        }
 
+        row.setAttribute("class", "flex justify-between items-center bg-white p-6 mt-4");
 
-    let showNotes = data.map(item => {
-      return (
-        `
-    <div class="flex flex-col justify-between items-center bg-white p-4 relative mt-4">
-    <p class="ml-3 h-28 overflow-auto px-2 break-all">
-    <span class="inline-block w-2 h-2 rounded-full border-1 border-white absolute inset-y-6 left-4 ${displayNoteColor(item.texttype)}"></span>
-    ${item.text}</p>
-    <div class="flex gap-5 items-center text-sm">
-    <p class="px-4 py-2 rounded-md ${displayNoteLabelColor(item.texttype)}">${item.texttype}</p>
-    <button id="btn-${item.id}" class="ml-5">
-     <svg class="icon" width="18" height="18">
-      <use xlink:href="#3682063881582863582"></use>
-     </svg>
-    </button>
-    </div>
-    </div>
-    `
-      )
-    }).join("")
+        row.innerHTML = ` 
+        <div class="flex gap-8 items-center flex-1 text-sm">
+        <svg class="icon w-10 h-10">
+         <use xlink:href="#move"></use>
+        </svg>
+       <p class="relative ml-3">
+       <span class="inline-block w-2 h-2 rounded-full border-1 border-white absolute inset-y-1.5 -left-6 ${displayNoteColor(selectedNote)}"></span>
+       ${msgInput}</p>
+       <p class="px-4 py-2 rounded-md ${displayNoteLabelColor(selectedNote)}">${selectedNote}</p>
+       </div>
+       <button class="ml-5 edit">
+        <svg class="icon" width="18" height="18">
+         <use xlink:href="#3682063881582863582"></use>
+        </svg>
+       </button>
+       <button class="ml-5 delete">
+        <svg class="icon" width="18" height="18">
+         <use xlink:href="#3682063881582863582"></use>
+        </svg>
+       </button>
+            `;
 
-    wrapperContainer.innerHTML = wrapperContainer.id === "activities" ? showActivity : showNotes;
-    for (let i = 0; i <= dataId; i++) {
-      let btn = document.getElementById(`btn-${i}`);
-      if (btn !== null) {
-        btn.addEventListener("click", () => {
-          deleteItem(i)
-        })
+        list.appendChild(row);
+        selectedRow = null;
+        if (list.children.length === 0) {
+          list.classList.add("hidden");
+          list.classList.remove("block")
+        }
+        else {
+          list.classList.remove("hidden");
+          list.classList.add("block")
+        }
       }
+      else {
+        selectedRow.children[0].children[1].textContent = inputMessage.value;
+        selectedRow = null;
+      }
+      clearFields()
     }
-  }
+    wrapperContainer.scrollTo(0, wrapperContainer.scrollHeight)
+    idCount++;
+  })
 
-  let deleteItem = (id) => {
-    let removeIndex = data.findIndex(item => item.id === id);
-    data.splice(removeIndex, 1);
-    mapData()
-    if(wrapperContainer.children.length === 0) {
-      wrapperContainer.classList.add("hidden");
-      wrapperContainer.classList.remove("block");
+
+  // edit method
+  wrapperContainer.addEventListener("click", (e) => {
+    e.preventDefault()
+    let target = e.target;
+    let editButton = target.parentElement.parentElement;
+    let itemToEdit = target.parentElement.parentElement.parentElement
+    if (editButton.classList.contains("edit")) {
+      selectedRow = itemToEdit;
+      inputMessage.value = selectedRow.children[0].children[1].textContent.trim();
     }
-  }
+  })
+
+
+  // delete method
+  wrapperContainer.addEventListener("click", (e) => {
+    let target = e.target;
+    let deleteButton = target.parentElement.parentElement;
+    let itemToDelete = target.parentElement.parentElement.parentElement
+    let mainContainer = target.parentElement.parentElement.parentElement.parentElement;
+    if (deleteButton.classList.contains("delete")) {
+      mainContainer.removeChild(itemToDelete);
+    }
+  })
+
 
   let displayNoteColor = (value) => {
     if (value === "call" || value === "important") {
@@ -96,26 +124,7 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
       return "bg-gray-400/10 text-gray-500"
     }
   }
-  sendBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (inputMessage.value === "") {
-      alert("Please enter some text")
-    }
-    else {
-      let selectedNote = ""
-      for (let i = 0; i < textType.length; i++) {
-        if (textType[i].checked) {
-          selectedNote = textType[i].value
-        }
-      }
-      data.push({ id: dataId, text: inputMessage.value, texttype: selectedNote });
-      mapData()
-      dataId++;
-      wrapperContainer.classList.add("block");
-      wrapperContainer.classList.remove("hidden");
-    }
 
-  })
 
   formToggler.addEventListener("click", function () {
     if (form.classList.contains("hidden")) {
@@ -129,7 +138,5 @@ export let wrapData = (wrapperContainer, inputMessage, sendBtn, textType, form, 
     mainContentBox.scrollTo(0, mainContentBox.scrollHeight)
   })
 
-
-  mapData()
 }
 
