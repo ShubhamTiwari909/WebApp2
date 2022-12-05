@@ -3,6 +3,7 @@ export const messageSenderImage1 = document.getElementById("message-sender-image
 export const mainContentBox = document.getElementById("main-content")
 
 
+export const messageContainer = document.getElementById('message-box');
 export const messageBox = document.getElementById('self-messages');
 export const messageInput= document.getElementById('message-input');
 export const sendBtnMessage = document.getElementById('send-button');
@@ -11,6 +12,9 @@ export const settingsButton = document.getElementById('settings-button');
 export const settingsBox = document.getElementById('setting-box');
 export const chatFileInput = document.getElementById('chat-file-input');
 export const typing = document.querySelectorAll(".bounce")
+
+
+export const activityNotesBox = document.getElementById("activity-notes-box")
 
 export const container = document.getElementById("activities");
 export const messageInputActivity = document.getElementById('message-input-activity');
@@ -32,8 +36,7 @@ export const statsImage1 = document.getElementById("stats-image1")
 export const statsImage2 = document.getElementById("stats-image2")
 export const statsImage3 = document.getElementById("stats-image3")
 
-export const answeredUsers = document.getElementById("answered-users")
-export const unansweredUsers = document.getElementById("unanswered-users")
+export const statsContainer = document.getElementById("stats-container")
 
 export const requestViewTimestamp = document.getElementById("request-view-timestamp")
 
