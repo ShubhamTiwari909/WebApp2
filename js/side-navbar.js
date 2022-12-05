@@ -54,7 +54,7 @@ const showNavigationUsers = userLinks.map(link => {
         `<div class="relative">
         <a href="javascript:void(0)">
         <img src="${link.ImageSrc}" class="img-fluid" />
-        <span class="w-2 h-2 rounded-full bg-green-400 border-1 border-white absolute inset-y-1 right-5 ${link.online ? 'inline-block' : 'hidden'}"></span>
+        <span class="w-2 h-2 rounded-full bg-green-400 border-1 border-white absolute inset-y-1 left-8 ${link.online ? 'inline-block' : 'hidden'}"></span>
         </a>
         </div>
         `
